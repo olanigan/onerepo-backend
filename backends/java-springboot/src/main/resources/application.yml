@@ -1,0 +1,8 @@
+server:
+  port: 3003
+
+spring:
+  datasource:
+    url: jdbc:sqlite:../bun-sqlite/gtd.db
+    driver-class-name: org.sqlite.JDBC
+    # We do not use JPA here, but Spring Data JDBC
