@@ -3,6 +3,6 @@ server:
 
 spring:
   datasource:
-    url: jdbc:sqlite:../bun-sqlite/gtd.db
+    url: jdbc:sqlite:/Users/unblockd/unblockd_workspaces/old-onerepo/backends/bun-sqlite/gtd.db
     driver-class-name: org.sqlite.JDBC
     # We do not use JPA here, but Spring Data JDBC

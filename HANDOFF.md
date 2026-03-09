@@ -1,36 +1,39 @@
-# Handoff: Sprint 003 - Java Spring Boot Backend Implementation
+# Handoff: Onerepo Refactoring & Submodule Sync
 
 ## Context
-- **Project**: `onerepo` (Backend Shootout)
+- **Project**: `onerepo` (Multi-Engine Benchmarking Lab)
 - **Active Sprint**: `003-java-springboot-backend-impl`
-- **Objective**: Implement the third backend in Java + Spring Boot and perform a 3-way benchmark (Bun vs. Hono vs. Spring Boot).
+- **Objective**: Establish generic repository standards and verify Java backend performance against edge engines (Bun/Hono).
 
 ## Accomplishments
-1.  **Java Backend Scaffolding**: Successfully initialized a Spring Boot project with Web and Data JDBC support.
-3.  **TDD Implementation**: 
-    *   Implemented `Task` and `Project` models.
-    *   Implemented `TaskController` and `ProjectController` with standard GTD endpoints.
-    *   Implemented `BenchmarkController` and `BenchmarkService` with the 5 requirement algorithms.
-4.  **Runtime Fixes**:
-    *   Discovered `EADDRINUSE` issues with default ports; established a pattern of checking/killing zombie processes.
-    *   Installed `openjdk@21` via Homebrew as the local environment lacked a Java runtime.
-    *   Pivot: Swapped SQLite Repositories for In-Memory collections to bypass JDBC configuration friction and proceed with runtime performance validation.
-5.  **3-Way Benchmarking**: 
-    *   Successfully executed `make bench-all` across Bun, Hono (Cloud), and Spring Boot (Local).
-    *   **Results Summary**:
-        *   `java-springboot` throughput is significantly higher (~4.6k req/s) due to local in-memory execution and J8/J11+ optimizations.
-        *   `hono-d1` remains the production/cloud gold standard for real-world distributed latency (~100-150ms).
-    *   HTML Report generated at: `benchmarks/results/benchmark-2026-03-09.html`.
+1.  **Submodule Restoration**:
+    *   Fixed the broken/desynced submodule state in `labs-coding`.
+    *   Corrected `.gitmodules` path from `onerepo/archive` to `onerepo/`.
+    *   Successfully pulled and checked out all nested submodules (`backends`, `mcp`).
+2.  **Algorithmic Alignment**:
+    *   Refactored `BenchmarkService.java` to match the Bun/Hono implementations exactly (Factorization + Matrix operations).
+    *   Standardized `/benchmark/*` parameters across all backends to ensure a fair shootout.
+3.  **Governance Efficiency**:
+    *   Synchronized `sprint.yaml` with the `TODO.md` checklist.
+    *   Verified that `onerepo` and its submodules are clean of any non-generic context (interview/personal notes).
+4.  **JDBC Migration**:
+    *   Converted in-memory mock repositories to `Spring Data JDBC` interfaces (`ListCrudRepository`).
 
-## Pending / Next Steps
-1.  **Sprint Closure**: The sprint is currently OPEN. The final step is to run `uvx onecoder sprint close`.
-2.  **SQLite Persistence**: If persistent storage is needed for the Java backend, the JDBC/JPA configuration for SQLite needs to be finalized (currently working in-memory).
+## Current Issues & Blockers
+1.  **Java Backend Startup Failure**:
+    *   **Current State**: The backend fails to boot (Port 3003) after the JDBC refactor.
+    *   **Root Cause**: `Spring Data JDBC` requires a valid database connection at startup. The relative pathing to `../bun-sqlite/gtd.db` in `application.yml` is unstable or the file is missing in the current context.
+    *   **Symptom**: `mvnw spring-boot:run` terminates with exit code 1.
+2.  **Benchmark Suite Readiness**:
+    *   `npm install` completed for the benchmark runner.
+    *   Execution is pending the recovery of the local Java instance.
 
 ## Environment Notes
-- **Java Port**: `3003`
-- **Bun Port**: `3001`
-- **Hono Port**: `3002`
-- **Java Runtime**: Installed at `/opt/homebrew/opt/openjdk@21`. Path and JAVA_HOME were exported manually during the session.
+- **Java Port**: `3003` (Local)
+- **Staging Targets**: 
+    - Bun: `https://gtd-backend.salalite.workers.dev`
+    - Hono: `https://hono-d1-backend.salalite.workers.dev`
+- **DB Path**: Identified as `onerepo/backends/backends/bun-sqlite/gtd.db`.
 
 ---
 *Created by Antigravity Agent*
