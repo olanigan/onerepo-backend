@@ -1,0 +1,472 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>GTD Backend Benchmarks</title>
+      <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          min-height: 100vh;
+          padding: 20px;
+        }
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          background: white;
+          border-radius: 12px;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+          overflow: hidden;
+        }
+        header {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          padding: 40px;
+          text-align: center;
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header p { opacity: 0.9; }
+        main { padding: 40px; }
+        section { margin-bottom: 40px; }
+        h2 { color: #333; margin-bottom: 20px; font-size: 1.5em; }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          background: white;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          border-radius: 8px;
+          overflow: hidden;
+        }
+        th {
+          background: #f5f5f5;
+          padding: 15px;
+          text-align: left;
+          font-weight: 600;
+          border-bottom: 2px solid #ddd;
+        }
+        td {
+          padding: 12px 15px;
+          border-bottom: 1px solid #eee;
+        }
+        tr:hover { background: #f9f9f9; }
+        td.scenario { font-weight: 600; color: #667eea; }
+        td.winner {
+          background: #d4edda;
+          font-weight: bold;
+        }
+        td.missing { color: #999; }
+        .details-card {
+          background: #f8f9fa;
+          border-left: 4px solid #667eea;
+          padding: 20px;
+          margin-bottom: 20px;
+          border-radius: 4px;
+        }
+        .details-card h3 { color: #667eea; margin-bottom: 15px; }
+        .details-card table {
+          background: white;
+          box-shadow: none;
+          border: 1px solid #ddd;
+        }
+        .details-card td { padding: 8px 12px; }
+        .details-card tr:last-child td { border-bottom: none; }
+        footer {
+          background: #f5f5f5;
+          padding: 20px;
+          text-align: center;
+          color: #666;
+          font-size: 0.9em;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <header>
+          <h1>🚀 GTD Backend Benchmarks</h1>
+          <p>Multi-Runtime Performance Comparison</p>
+        </header>
+        <main>
+          <section>
+            <h2>📊 Comparison Summary</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Scenario</th>
+                  <th>bun-sqlite</th><th>hono-d1</th><th>java-springboot</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+        <tr>
+          <td class="scenario">cpu-bound</td>
+          
+                <td class="">
+                  <strong>69</strong> req/s<br/>
+                  <small>p99: 228ms</small>
+                </td>
+              
+                <td class="">
+                  <strong>90</strong> req/s<br/>
+                  <small>p99: 152ms</small>
+                </td>
+              
+                <td class="winner">
+                  <strong>4629</strong> req/s<br/>
+                  <small>p99: 2ms</small>
+                </td>
+              
+        </tr>
+      
+        <tr>
+          <td class="scenario">io-heavy</td>
+          
+                <td class="">
+                  <strong>132</strong> req/s<br/>
+                  <small>p99: 266ms</small>
+                </td>
+              
+                <td class="">
+                  <strong>190</strong> req/s<br/>
+                  <small>p99: 106ms</small>
+                </td>
+              
+                <td class="winner">
+                  <strong>4650</strong> req/s<br/>
+                  <small>p99: 4ms</small>
+                </td>
+              
+        </tr>
+      
+        <tr>
+          <td class="scenario">memory</td>
+          
+                <td class="">
+                  <strong>77</strong> req/s<br/>
+                  <small>p99: 154ms</small>
+                </td>
+              
+                <td class="">
+                  <strong>89</strong> req/s<br/>
+                  <small>p99: 108ms</small>
+                </td>
+              
+                <td class="winner">
+                  <strong>4530</strong> req/s<br/>
+                  <small>p99: 2ms</small>
+                </td>
+              
+        </tr>
+      
+        <tr>
+          <td class="scenario">cascading</td>
+          
+                <td class="">
+                  <strong>270</strong> req/s<br/>
+                  <small>p99: 187ms</small>
+                </td>
+              
+                <td class="">
+                  <strong>352</strong> req/s<br/>
+                  <small>p99: 122ms</small>
+                </td>
+              
+                <td class="winner">
+                  <strong>4750</strong> req/s<br/>
+                  <small>p99: 6ms</small>
+                </td>
+              
+        </tr>
+      
+        <tr>
+          <td class="scenario">malicious</td>
+          
+                <td class="">
+                  <strong>35</strong> req/s<br/>
+                  <small>p99: 281ms</small>
+                </td>
+              
+                <td class="">
+                  <strong>48</strong> req/s<br/>
+                  <small>p99: 127ms</small>
+                </td>
+              
+                <td class="winner">
+                  <strong>3509</strong> req/s<br/>
+                  <small>p99: 2ms</small>
+                </td>
+              
+        </tr>
+      
+              </tbody>
+            </table>
+          </section>
+          <section>
+            <h2>📈 Detailed Results</h2>
+            
+        <div class="details-card">
+          <h3>bun-sqlite - cpu-bound</h3>
+          <table>
+            <tr><td>Total Requests</td><td>693</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>69.05 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>57.56ms</td></tr>
+            <tr><td>p50 Latency</td><td>47.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>127.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>228.00ms</td></tr>
+            <tr><td>Max Latency</td><td>360.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>24.9MB</td></tr>
+            <tr><td>Avg Memory</td><td>18.3MB</td></tr>
+            <tr><td>Recovery Time</td><td>28ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>bun-sqlite - io-heavy</h3>
+          <table>
+            <tr><td>Total Requests</td><td>1337</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>131.53 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>59.84ms</td></tr>
+            <tr><td>p50 Latency</td><td>50.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>136.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>266.00ms</td></tr>
+            <tr><td>Max Latency</td><td>346.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>25.2MB</td></tr>
+            <tr><td>Avg Memory</td><td>18.7MB</td></tr>
+            <tr><td>Recovery Time</td><td>0ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>bun-sqlite - memory</h3>
+          <table>
+            <tr><td>Total Requests</td><td>774</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>77.08 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>51.64ms</td></tr>
+            <tr><td>p50 Latency</td><td>46.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>99.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>154.00ms</td></tr>
+            <tr><td>Max Latency</td><td>274.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>25.4MB</td></tr>
+            <tr><td>Avg Memory</td><td>18.9MB</td></tr>
+            <tr><td>Recovery Time</td><td>0ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>bun-sqlite - cascading</h3>
+          <table>
+            <tr><td>Total Requests</td><td>2709</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>270.01 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>58.90ms</td></tr>
+            <tr><td>p50 Latency</td><td>52.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>120.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>187.00ms</td></tr>
+            <tr><td>Max Latency</td><td>311.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>25.4MB</td></tr>
+            <tr><td>Avg Memory</td><td>19.8MB</td></tr>
+            <tr><td>Recovery Time</td><td>0ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>bun-sqlite - malicious</h3>
+          <table>
+            <tr><td>Total Requests</td><td>353</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>35.19 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>56.76ms</td></tr>
+            <tr><td>p50 Latency</td><td>48.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>109.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>281.00ms</td></tr>
+            <tr><td>Max Latency</td><td>643.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>29.5MB</td></tr>
+            <tr><td>Avg Memory</td><td>21.0MB</td></tr>
+            <tr><td>Recovery Time</td><td>0ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>hono-d1 - cpu-bound</h3>
+          <table>
+            <tr><td>Total Requests</td><td>898</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>89.64 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>44.32ms</td></tr>
+            <tr><td>p50 Latency</td><td>37.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>86.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>152.00ms</td></tr>
+            <tr><td>Max Latency</td><td>239.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>28.2MB</td></tr>
+            <tr><td>Avg Memory</td><td>20.6MB</td></tr>
+            <tr><td>Recovery Time</td><td>36ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>hono-d1 - io-heavy</h3>
+          <table>
+            <tr><td>Total Requests</td><td>1903</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>190.24 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>41.64ms</td></tr>
+            <tr><td>p50 Latency</td><td>35.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>76.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>106.00ms</td></tr>
+            <tr><td>Max Latency</td><td>298.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>29.9MB</td></tr>
+            <tr><td>Avg Memory</td><td>18.4MB</td></tr>
+            <tr><td>Recovery Time</td><td>0ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>hono-d1 - memory</h3>
+          <table>
+            <tr><td>Total Requests</td><td>897</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>89.34 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>44.30ms</td></tr>
+            <tr><td>p50 Latency</td><td>38.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>83.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>108.00ms</td></tr>
+            <tr><td>Max Latency</td><td>226.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>31.7MB</td></tr>
+            <tr><td>Avg Memory</td><td>21.7MB</td></tr>
+            <tr><td>Recovery Time</td><td>0ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>hono-d1 - cascading</h3>
+          <table>
+            <tr><td>Total Requests</td><td>3545</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>352.46 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>44.80ms</td></tr>
+            <tr><td>p50 Latency</td><td>38.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>83.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>122.00ms</td></tr>
+            <tr><td>Max Latency</td><td>260.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>31.9MB</td></tr>
+            <tr><td>Avg Memory</td><td>22.0MB</td></tr>
+            <tr><td>Recovery Time</td><td>0ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>hono-d1 - malicious</h3>
+          <table>
+            <tr><td>Total Requests</td><td>476</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>47.58 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>41.84ms</td></tr>
+            <tr><td>p50 Latency</td><td>36.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>77.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>127.00ms</td></tr>
+            <tr><td>Max Latency</td><td>226.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>32.1MB</td></tr>
+            <tr><td>Avg Memory</td><td>22.9MB</td></tr>
+            <tr><td>Recovery Time</td><td>0ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>java-springboot - cpu-bound</h3>
+          <table>
+            <tr><td>Total Requests</td><td>46285</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>4628.50 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>0.84ms</td></tr>
+            <tr><td>p50 Latency</td><td>1.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>1.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>2.00ms</td></tr>
+            <tr><td>Max Latency</td><td>8.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>85.8MB</td></tr>
+            <tr><td>Avg Memory</td><td>43.3MB</td></tr>
+            <tr><td>Recovery Time</td><td>1ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>java-springboot - io-heavy</h3>
+          <table>
+            <tr><td>Total Requests</td><td>46501</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>4650.10 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>1.63ms</td></tr>
+            <tr><td>p50 Latency</td><td>2.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>3.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>4.00ms</td></tr>
+            <tr><td>Max Latency</td><td>56.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>88.9MB</td></tr>
+            <tr><td>Avg Memory</td><td>46.4MB</td></tr>
+            <tr><td>Recovery Time</td><td>0ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>java-springboot - memory</h3>
+          <table>
+            <tr><td>Total Requests</td><td>45303</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>4530.30 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>0.86ms</td></tr>
+            <tr><td>p50 Latency</td><td>1.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>2.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>2.00ms</td></tr>
+            <tr><td>Max Latency</td><td>40.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>89.2MB</td></tr>
+            <tr><td>Avg Memory</td><td>45.6MB</td></tr>
+            <tr><td>Recovery Time</td><td>0ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>java-springboot - cascading</h3>
+          <table>
+            <tr><td>Total Requests</td><td>47503</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>4749.83 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>3.14ms</td></tr>
+            <tr><td>p50 Latency</td><td>3.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>5.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>6.00ms</td></tr>
+            <tr><td>Max Latency</td><td>32.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>88.6MB</td></tr>
+            <tr><td>Avg Memory</td><td>47.4MB</td></tr>
+            <tr><td>Recovery Time</td><td>0ms</td></tr>
+          </table>
+        </div>
+      
+        <div class="details-card">
+          <h3>java-springboot - malicious</h3>
+          <table>
+            <tr><td>Total Requests</td><td>35091</td></tr>
+            <tr><td>Success Rate</td><td>0.0%</td></tr>
+            <tr><td>Throughput</td><td>3509.10 req/s</td></tr>
+            <tr><td>Avg Latency</td><td>0.56ms</td></tr>
+            <tr><td>p50 Latency</td><td>1.00ms</td></tr>
+            <tr><td>p95 Latency</td><td>1.00ms</td></tr>
+            <tr><td>p99 Latency</td><td>2.00ms</td></tr>
+            <tr><td>Max Latency</td><td>82.00ms</td></tr>
+            <tr><td>Peak Memory</td><td>91.0MB</td></tr>
+            <tr><td>Avg Memory</td><td>44.3MB</td></tr>
+            <tr><td>Recovery Time</td><td>1ms</td></tr>
+          </table>
+        </div>
+      
+          </section>
+        </main>
+        <footer>
+          <p>Generated on 3/9/2026, 10:46:27 AM</p>
+        </footer>
+      </div>
+    </body>
+    </html>
+  
