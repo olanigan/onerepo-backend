@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "gtd-frontend",
+  "compatibility_date": "2024-12-30",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "vars": {
+    "NEXT_PUBLIC_GATEWAY_URL": "https://gtd-gateway.salalite.workers.dev",
+    "NEXT_PUBLIC_HONO_D1_URL": "https://hono-d1-backend.salalite.workers.dev"
+  },
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "gtd-frontend"
+    }
+  ]
+}
