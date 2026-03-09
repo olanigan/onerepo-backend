@@ -1,0 +1,182 @@
+$schema: https://onecoder.dev/schemas/sprint.json
+version: 1.0.0
+sprintId: 002-deploy-hono-d1-gateway-frontend
+name: deploy-hono-d1-gateway-frontend
+title: Deploy Hono D1 + Gateway + Frontend
+status:
+  phase: in-progress
+  state: active
+  message: Working on task implement-backend-selection-ui
+metadata:
+  createdAt: 2026-02-21T14:30:00Z
+  updatedAt: 2026-02-25T00:52:47.523Z
+  parentComponent: frontend
+  specId: SPEC-FRONTEND-001
+  deploymentTarget: Cloudflare (Pages + Workers + D1)
+tasks:
+  - id: task-001
+    title: Update types.ts with backend model
+    status: completed
+    type: refactor
+    description: Replace TimeSegment with backend status (inbox/next/waiting/done),
+      update Task interface to match backend schema
+  - id: task-002
+    title: Update TaskCard with new status buttons
+    status: completed
+    type: refactor
+    description: Replace move buttons (PRIORITY/BACKLOG/ARCHIVED) with backend
+      status (inbox/next/waiting/done)
+  - id: task-003
+    title: Update TaskModal with status selector
+    status: completed
+    type: refactor
+    description: Replace segment selector with status selector (Inbox/Next/Waiting/Done)
+  - id: task-004
+    title: Update page.tsx columns to status view
+    status: completed
+    type: refactor
+    description: Replace Morning/Afternoon/Evening columns with
+      Inbox/Next/Waiting/Done columns
+  - id: task-005
+    title: Update page.tsx views and filters
+    status: completed
+    type: refactor
+    description: Remap TODAY/BACKLOG/ARCHIVE views to backend status filters
+  - id: task-006
+    title: Redesign Insights dashboard
+    status: completed
+    type: refactor
+    description: Replace time-segment metrics with status-based metrics (inbox
+      count, completion rate, weekly trends)
+  - id: task-007
+    title: Add gateway environment config
+    status: completed
+    type: config
+    description: Add NEXT_PUBLIC_GATEWAY_URL environment variable to frontend
+  - id: task-008
+    title: Implement BackendRegistry interface
+    status: completed
+    type: implementation
+    description: Create gateway with BackendRegistry interface, environment-based
+      config for backend URLs
+  - id: task-009
+    title: Add x-backend header routing
+    status: completed
+    type: implementation
+    description: Implement x-backend header routing (hono-d1, bun-sqlite)
+  - id: task-010
+    title: Add health check and CORS
+    status: completed
+    type: implementation
+    description: Add /health endpoint and CORS middleware to gateway
+  - id: task-011
+    title: Deploy gateway to Cloudflare Workers
+    status: completed
+    type: deployment
+    description: Configure wrangler.toml and deploy gateway
+  - id: task-012
+    title: Create hono-d1 backend project
+    status: completed
+    type: setup
+    description: Create backends/hono-d1/ with Hono + D1 structure
+  - id: task-013
+    title: Set up D1 database schema
+    status: completed
+    type: database
+    description: Create tasks and projects tables in D1
+  - id: task-014
+    title: Implement Task CRUD endpoints
+    status: completed
+    type: implementation
+    description: Implement GET/POST/PUT/DELETE /tasks endpoints
+  - id: task-015
+    title: Implement Project CRUD endpoints
+    status: completed
+    type: implementation
+    description: Implement GET/POST/PUT/DELETE /projects endpoints
+  - id: task-016
+    title: Add health check to backend
+    status: completed
+    type: implementation
+    description: Add /health endpoint to hono-d1
+  - id: task-017
+    title: Deploy hono-d1 to Cloudflare Workers
+    status: completed
+    type: deployment
+    description: Deploy backend with D1 binding
+  - id: task-018
+    title: Replace localStorage with API calls
+    status: completed
+    type: integration
+    description: Update page.tsx to call gateway API instead of localStorage
+  - id: task-019
+    title: Add x-backend header to requests
+    status: completed
+    type: integration
+    description: Add x-backend hono-d1 header to all API calls
+  - id: task-020
+    title: Add loading and error states
+    status: completed
+    type: UX
+    description: Add loading indicators and error handling to UI
+  - id: task-021
+    title: Revise ADR-001
+    status: completed
+    type: documentation
+    description: Update ADR status to Active, document actual implementation, add
+      Hono D1 section
+  - id: task-022
+    title: Update migration path
+    status: completed
+    type: documentation
+    description: Update ADR migration path (v0.1.x → v0.2.x → v1.0.x)
+  - id: task-023
+    title: Deploy frontend to Cloudflare Pages
+    status: completed
+    type: deployment
+    description: Deployed Next.js frontend to Cloudflare Pages (requires
+      @cloudflare/next-on-pages adapter for full functionality)
+  - id: task-024
+    title: Verify end-to-end functionality
+    status: completed
+    type: verification
+    description: Backend API fully functional, tested CRUD operations
+  - id: implement-backend-selection-ui
+    title: Task implement-backend-selection-ui
+    status: in-progress
+  - id: task-025
+    title: Update gateway config with local backend URLs
+    status: todo
+    type: config
+    description: Add BACKEND_BUN_SQLITE_URL and other local backend URLs to gateways/wrangler.toml
+  - id: task-026
+    title: Update frontend API layer with backend selection
+    status: todo
+    type: refactor
+    description: Modify frontend/lib/api.ts to support dynamic backend selection via x-backend header
+  - id: task-027
+    title: Create BackendSelector dropdown component
+    status: todo
+    type: implementation
+    description: Create frontend/components/BackendSelector.tsx with dropdown for backend selection
+  - id: task-028
+    title: Add BackendSelector to Header component
+    status: todo
+    type: UI
+    description: Integrate BackendSelector into frontend/components/Header.tsx
+  - id: task-029
+    title: Persist backend selection in localStorage
+    status: todo
+    type: implementation
+    description: Save selected backend to localStorage for persistence across sessions
+  - id: task-030
+    title: Add health check for backend availability
+    status: todo
+    type: implementation
+    description: Implement health check to verify selected backend is reachable before switching
+artifacts:
+  readme: README.md
+  retro: RETRO.md
+  context:
+    - architecture-notes.md
+    - deployment-config.md

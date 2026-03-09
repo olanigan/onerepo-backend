@@ -20,13 +20,12 @@ This project is composed of multiple specifications that work together:
 
 | Spec ID | Component | Document | Status |
 |---------|-----------|----------|--------|
+| `SPEC-PROJECT-001` | Project Governance | `SPECIFICATIONS.md`, `AGENTS.md`, `ONECODER.md`, `FEEDBACK.md` | Active |
 | `SPEC-FRONTEND-001` | Frontend | `specs/PRD-Frontend.md` | Implemented |
 | `SPEC-GATEWAY-001` | Gateway | `specs/PRD-Gateway.md` | Implemented |
 | `SPEC-BACKEND-001` | Bun + SQLite Backend | `specs/PRD-Backend-BunSQLite.md` | Implemented |
-| `SPEC-BACKEND-002` | Hono + D1 Backend | `backends/hono-d1/` | Implemented |
+| `SPEC-BACKEND-002` | Hono + D1 Backend | `specs/PRD-Backend-HonoD1.md` | Implemented |
 | `SPEC-BACKEND-003` | Java Spring Boot Backend | `backends/java-springboot/` | Pending |
-| `SPEC-CLI-002` | Sprint 001 | `.sprint/001-setup-multi-backend-gtd-app/` | Completed |
-| `SPEC-CLI-003` | Sprint 002 | `.sprint/002-deploy-hono-d1-gateway-frontend/` | In Progress |
 
 ---
 
@@ -75,21 +74,11 @@ All backends must implement the API contract defined in:
 
 ---
 
-## 6. Sprint History
-
-| Sprint | Name | Spec ID | Status |
-|--------|------|---------|--------|
-| 001 | Setup Multi-Backend GTD App | SPEC-CLI-002 | ✅ Complete |
-| 002 | Deploy Hono D1 + Gateway + Frontend | SPEC-CLI-003 | 🔄 In Progress |
-| 003 | Java Spring Boot Backend | SPEC-CLI-004 | 📋 Planned |
-
----
-
-## 7. Directory Structure
+## 6. Directory Structure
 
 ```
 .
-├── .sprint/              # Sprint tracking (SPEC-CLI-XXX)
+├── .sprint/              # Sprint tracking (work mapped to SPEC-XXX)
 ├── backends/             # Backend implementations (SPEC-BACKEND-XXX)
 │   ├── bun-sqlite/       # Bun + SQLite
 │   ├── hono-d1/          # Hono + Cloudflare D1
@@ -100,17 +89,25 @@ All backends must implement the API contract defined in:
 ├── specs/                # Product requirements (SPEC-XXX)
 │   ├── PRD-Frontend.md
 │   ├── PRD-Gateway.md
-│   └── PRD-Backend-BunSQLite.md
+│   ├── PRD-Backend-BunSQLite.md
+│   └── PRD-Backend-HonoD1.md
 ├── benchmarks/          # Performance benchmarking
+├── SPECIFICATIONS.md    # Project-level spec (SPEC-PROJECT-001)
 ├── AGENTS.md            # Agent operational guide
 ├── FEEDBACK.md          # Friction log
-├── ONECODER.md          # CLI command reference
-└── SPECIFICATIONS.md    # This file
+└── ONECODER.md          # CLI command reference
 ```
 
 ---
 
 ## 8. Governance
+
+### Project-Level Spec (SPEC-PROJECT-001)
+The project-level specification (`SPEC-PROJECT-001`) covers:
+- Project overview and architecture
+- Component spec index
+- Version roadmap
+- Governance artifacts: `SPECIFICATIONS.md`, `AGENTS.md`, `ONECODER.md`, `FEEDBACK.md`, `HANDOFF.md`, `Makefile`
 
 ### Commit Workflow
 All commits should be linked to a specification using the `--spec-id` flag:
@@ -120,15 +117,17 @@ onecoder sprint commit -m "feat: add new feature" --spec-id SPEC-FRONTEND-001
 ```
 
 ### Finding Specs
+- **Project**: Check `SPECIFICATIONS.md` for overview and spec index
 - **Component specs**: Check `specs/` directory
 - **Backend specs**: Check `backends/<name>/` for backend-specific PRDs
-- **Sprint specs**: Check `.sprint/<name>/sprint.yaml`
+- **Sprint tracking**: Check `.sprint/<name>/sprint.yaml`
 
 ### Proposing New Specs
 If no spec exists for your work:
 1. Create a new PRD in `specs/` (for new components)
 2. Or add to existing spec's task list
 3. Reference spec ID in all commits
+4. Update this file to include the new spec
 
 ---
 

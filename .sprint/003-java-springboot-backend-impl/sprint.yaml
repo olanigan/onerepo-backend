@@ -1,0 +1,53 @@
+$schema: https://onecoder.dev/schemas/sprint.json
+version: 1.0.0
+sprintId: 003-java-springboot-backend-impl
+name: 003-java-springboot-backend-impl
+title: 003-java-springboot-backend-impl
+status:
+  phase: init
+  state: active
+  message: null
+metadata:
+  createdAt: 2026-03-09T10:26:20.032240
+  updatedAt: 2026-03-09T10:26:20.065558
+  createdBy: null
+  parentComponent: backend
+  specId: SPEC-BACKEND-003
+  gitBranch: null
+  labels: []
+goals:
+  primary: null
+  secondary: []
+tasks:
+- id: task-001
+  title: ''
+  status: todo
+  type: implementation
+  priority: medium
+  startedAt: null
+  firstCommitAt: null
+  completedAt: null
+- id: task-002
+  title: ''
+  status: todo
+  type: implementation
+  priority: medium
+  startedAt: null
+  firstCommitAt: null
+  completedAt: null
+git:
+  branch: null
+  lastCommit: null
+  hasUncommittedChanges: false
+hooks:
+  onInit: []
+  onTaskStart: []
+  onTaskComplete: []
+  onSprintClose: []
+retro:
+  summary: ''
+  actionItems: []
+artifacts:
+  readme: README.md
+  retro: RETRO.md
+  media: []

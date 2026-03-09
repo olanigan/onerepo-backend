@@ -1,0 +1,101 @@
+$schema: https://onecoder.dev/schemas/sprint.json
+version: 1.0.0
+sprintId: 001-setup-multi-backend-gtd-app
+name: setup-multi-backend-gtd-app
+title: Setup Multi Backend Gtd App
+status:
+  phase: implementation
+  state: active
+  message: UI migration complete, connecting to backend gateway
+metadata:
+  createdAt: 2026-02-07T13:45:29.270Z
+  updatedAt: 2026-02-21T14:00:00Z
+  parentComponent: frontend
+  specId: SPEC-FRONTEND-001
+tasks:
+  - id: task-001
+    title: Create comprehensive .gitignore for multi-backend project
+    status: done
+    type: setup
+    description: Added .gitignore covering node_modules, build outputs, environment files, SQLite databases, Cloudflare Workers, and IDE files
+    completedAt: 2026-02-07T11:09:00Z
+  - id: task-002
+    title: Design hybrid local/cloud architecture (ADR-001)
+    status: done
+    type: architecture
+    description: Created Architecture Decision Record for hybrid local Docker + Cloudflare Workers setup with Backend Registry Pattern
+    completedAt: 2026-02-07T11:30:00Z
+    specId: ADR-001
+  - id: task-003
+    title: Create Frontend PRD (SPEC-FRONTEND-001)
+    status: done
+    type: documentation
+    description: Defined Next.js GTD app requirements including task/project management, backend switching UI, and technical stack
+    completedAt: 2026-02-07T11:35:00Z
+    specId: SPEC-FRONTEND-001
+  - id: task-004
+    title: Create Gateway PRD with hybrid routing (SPEC-GATEWAY-001)
+    status: done
+    type: documentation
+    description: Updated Gateway PRD to support runtime backend switching between local Docker and cloud backends using Registry Pattern
+    completedAt: 2026-02-07T11:40:00Z
+    specId: SPEC-GATEWAY-001
+  - id: task-005
+    title: Create Bun SQLite Backend PRD (SPEC-BACKEND-001)
+    status: done
+    type: documentation
+    description: Defined Bun + SQLite backend as local-first default with full CRUD API, database schema, and Docker setup
+    completedAt: 2026-02-07T11:45:00Z
+    specId: SPEC-BACKEND-001
+  - id: task-006
+    title: Create Specs Index README
+    status: done
+    type: documentation
+    description: Created overview document linking all PRDs, ADR, and providing implementation roadmap
+    completedAt: 2026-02-07T11:50:00Z
+  - id: task-007
+    title: Document architecture insights and friction in FEEDBACK.md
+    status: done
+    type: process
+    description: Captured insights on Registry Pattern, security by design, and friction points around sprint task tracking
+    completedAt: 2026-02-07T12:00:00Z
+  - id: task-008
+    title: Move ADR to correct location and update AGENTS.md
+    status: done
+    type: process
+    description: Moved ADR-001 from specs/ to docs/architecture/decisions/ per ONECODER.md standards. Updated AGENTS.md with Architecture and Sprint Tracking sections.
+    completedAt: 2026-02-07T12:05:00Z
+  - id: task-009
+    title: Migrate FocusFlow UI from personal/ to onerepo/frontend
+    status: done
+    type: implementation
+    description: Removed AI features (Goal Architect, AI Coach), implemented GTD segmented layout with Morning/Afternoon/Evening columns, multi-view navigation (Today/Backlog/Archive/Insights)
+    completedAt: 2026-02-21T14:00:00Z
+  - id: task-010
+    title: Integrate recharts for Insights dashboard
+    status: done
+    type: implementation
+    description: Installed recharts, implemented execution velocity bar chart by time segment with Morning/Afternoon/Evening breakdown
+    completedAt: 2026-02-21T14:00:00Z
+  - id: task-011
+    title: Create agent-browser skill for UI validation
+    status: done
+    type: tooling
+    description: Created onerepo/.agent/skills/agent-browser/SKILL.md with 60+ commands documented for browser automation
+    completedAt: 2026-02-21T14:00:00Z
+  - id: task-012
+    title: Visual verification of AI-free UI
+    status: done
+    type: verification
+    description: Verified no AI Goal Architect/AI Coach elements exist via agent-browser, confirmed recharts renders correctly in Insights view
+    completedAt: 2026-02-21T14:00:00Z
+  - id: task-013
+    title: Connect frontend to backend gateway
+    status: todo
+    type: integration
+    description: Replace localStorage persistence with API calls through onerepo/gateways/ using x-backend header routing
+    completedAt:
+artifacts:
+  readme: README.md
+  retro: RETRO.md
+  walkthrough: walkthrough.md
